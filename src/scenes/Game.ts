@@ -19,7 +19,8 @@ export default class Demo extends Phaser.Scene {
     this.load.image('platform-grass', 'assets/platforms/ground_grass.png');
     this.load.image('platform-sand', 'assets/platforms/ground_sand.png');
     // Load the player sprite
-    this.load.spritesheet('mallory', 'assets/player-sheet.png', { frameWidth: 24, frameHeight: 24 });
+    // this.load.spritesheet('mallory', 'assets/player-sheet.png', { frameWidth: 24, frameHeight: 24 });
+    this.load.spritesheet('DSV', 'assets/DSVSpriteSheet.png', { frameWidth: 1024, frameHeight: 1024 });
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
   }
@@ -49,7 +50,9 @@ export default class Demo extends Phaser.Scene {
     });
 
     // Draw the player sprite
-    this.playerSprite = this.physics.add.sprite(940, 320, 'mallory', 0).setScale(2);
+    // this.playerSprite = this.physics.add.sprite(940, 320, 'mallory', 0).setScale(2);
+    // this.playerSprite = this.physics.add.sprite(940, 320, 'DSV', 0).setScale(2);
+    this.playerSprite = this.physics.add.sprite(940, 320, 'DSV', 0).setScale(0.3);
 
     this.playerSprite.body.checkCollision.up = false;
     this.playerSprite.body.checkCollision.left = false;
@@ -60,7 +63,7 @@ export default class Demo extends Phaser.Scene {
     this.anims.create({
       key: 'move',
       frameRate: 15,
-      frames: this.anims.generateFrameNumbers('mallory', {start: 0, end: 4}),
+      frames: this.anims.generateFrameNumbers('DSV', {start: 0, end: 4}),
       repeat: -1
     });
 
