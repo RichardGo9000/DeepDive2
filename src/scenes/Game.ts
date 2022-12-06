@@ -14,6 +14,8 @@ export default class Demo extends Phaser.Scene {
   private topOpen = false;
   private bottomOpen = false;
 
+  
+
   constructor() {
     super('GameScene');
   }
@@ -31,6 +33,8 @@ export default class Demo extends Phaser.Scene {
 
     this.cursorKeys = this.input.keyboard.createCursorKeys();
   }
+
+  
 
   create() {
     this.add.image(920, 550, 'background').setScale(0.4);
@@ -123,6 +127,8 @@ export default class Demo extends Phaser.Scene {
     });
   }
 
+  
+
   update(time: number, delta: number): void {
     const { playerSprite, cursorKeys } = this as { playerSprite: Phaser.Physics.Arcade.Sprite, cursorKeys: Phaser.Types.Input.Keyboard.CursorKeys };
     // const { left, right } = cursorKeys;
@@ -137,7 +143,8 @@ export default class Demo extends Phaser.Scene {
 
     const touchingGround = playerSprite.body.touching.down;
 
-    function openTopDoor() {
+    const openTopDoor = () => {
+      console.log('openTopDoor() called');
       if (this.topOpen) {
         this.topOpen = false;
         // playerSprite.anims.play('closeTop', true);
@@ -156,15 +163,16 @@ export default class Demo extends Phaser.Scene {
     if (keyT.isDown) {
       playerSprite.setVelocityX(0);
       playerSprite.setVelocityY(0);
-      if (this.topOpen) {
-        this.topOpen = false;
-        // playerSprite.anims.play('closeTop', true);
-        playerSprite.anims.playReverse('openTop', true);
-      } else {
-        this.topOpen = true;
-        playerSprite.anims.play('openTop', true);
-      }
-      playerSprite.anims.play('openTop', true);
+      openTopDoor();
+      // if (this.topOpen) {
+      //   this.topOpen = false;
+      //   // playerSprite.anims.play('closeTop', true);
+      //   playerSprite.anims.playReverse('openTop', true);
+      // } else {
+      //   this.topOpen = true;
+      //   playerSprite.anims.play('openTop', true);
+      // }
+      // playerSprite.anims.play('openTop', true);
     } else if (left.isDown) {
       playerSprite.anims.play('move', true);
       playerSprite.setVelocityX(-200);
